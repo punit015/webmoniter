@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Monitor</title>
+    <style>
+        :root {
+            --primary: #0066ff;
+            --background: #1c1c1c;
+            --text: #ffffff;
+            --card: #2d2d2d;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: var(--card);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .status {
+            display: inline-block;
+            padding: 8px 16px;
+            background: var(--primary);
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .alerts {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 2rem;
+        }
+
+        .alert-item {
+            padding: 15px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 1rem;
+            }
+            
+            .alert-item {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Website Monitor</h1>
+            <div class="status">System Active</div>
+        </div>
+        
+        <div class="alerts">
+            <h2>Recent Alerts</h2>
+            {% if alerts %}
+                {% for alert in alerts %}
+                    <div class="alert-item">
+                        {{ alert }}
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="alert-item">
+                    No alerts yet. System is monitoring for changes...
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
